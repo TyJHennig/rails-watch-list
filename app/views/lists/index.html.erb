@@ -12,12 +12,17 @@
 
 <div class="container justify-content-flex">
   <% @lists.each do |list| %>
-      <div class="card-deck">
-        <div class="card">
-          <img class="card-img-top" src=<%= cl_image_tag(list.photo.key,
-          width: 400, height: 300, crop: :fill) %> alt="Card image cap">
+    <div class="card-deck">
+      <div class="card col-12 col-lg-8">
+        <% if list.photo.attached? %>
+            <img class="card-img-top" src=<%= cl_image_tag(list.photo.key,
+            width: 400, height: 300, crop: :fill) %> alt="Card image cap">
+        <% else %>
+          <img class="card-img-top" src= "https://res.cloudinary.com/doizo65a2/image/upload/v1657627361/cld-sample-2.jpg"
+          width= "400px" height= "300px" crop= "fit" alt="Card image cap">
+        <% end %>
         <div class="card-body">
-          <h5 class="card-title"><%= list.name %></h5>
+          <h5 class="card-title">🎥 <%= list.name %></h5>
           <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus illum enim at. Rerum, qui alias? Molestiae suscipit, ipsum tempora quaerat ab, nobis et quia autem necessitatibus aperiam quisquam sunt a.</p>
           <%= link_to "Check it out", list_path(list), class: "btn btn-primary"  %>
           <p class="card-text"><small class="text-muted">Last updated <%= rand(1..30) %> mins ago</small></p>

@@ -1,4 +1,11 @@
 <h1>Show</h1>
 
 <%= @list.name %>
-<%= cl_image_tag @list.photo.key, crop: :thumb %>
+<% if @list.photo.attached? %>
+  <%= cl_image_tag @list.photo.key, crop: :thumb %>
+<% else %>
+  <img src="https://res.cloudinary.com/doizo65a2/image/upload/v1657627361/cld-sample-2.jpg"
+  width= "100px" height= "100px" alt="...">
+<% end %>
+
+<%= link_to "go back", lists_path, class: "btn btn-primary"  %>
