@@ -1,20 +1,23 @@
-<div class="container justify-content-center">
-  <div class="banner" >
-    <div class="container">
-      <div class="d-grid gap-2">
-        <div>
-          <h1>Welcome to your very own movie database </h1>
-          <a href="/lists/new" class="btn btn-warning btn-lg rounded-pill">Make a list</a>
-        </div>
+
+<div class="banner" >
+  <div class="container">
+    <div class="d-grid gap-2">
+      <div>
+        <h1>Welcome to your very own movie database </h1>
+        <a href="/lists/new" class="btn btn-warning btn-lg rounded-pill">Make a list</a>
       </div>
     </div>
   </div>
 </div>
 
+<div class="container justify-content-flex">
   <% @lists.each do |list| %>
-    <div class="card-deck">
-      <div class="card">
-        <img class="card-img-top" src=<%= list.photo %> alt="Card image cap">
+    <% if list.photo.attached? %>
+      <div class="card-deck">
+        <div class="card">
+          <img class="card-img-top" src=<%= cl_image_tag(list.photo.key,
+          width: 400, height: 300, crop: :fill) %> alt="Card image cap">
+    <% end %>
         <div class="card-body">
           <h5 class="card-title"><%= list.name %></h5>
           <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus illum enim at. Rerum, qui alias? Molestiae suscipit, ipsum tempora quaerat ab, nobis et quia autem necessitatibus aperiam quisquam sunt a.</p>
@@ -24,3 +27,4 @@
       </div>
     </div>
   <% end %>
+</div>
